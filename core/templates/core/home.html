@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search Info Displayer</title>
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace;
+        }
+
+        #main {
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        h1 {
+            
+            margin-bottom: 20px;
+        }
+
+        input[type='text'] {
+            width: 30%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 2px solid black;
+           
+        }
+
+        input[type='submit'] {
+            width: 30%;
+            padding: 5px;
+            background: black;
+            color: white;
+            text-transform: uppercase;
+            border radius: 9px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="main">
+    <h1>Search Info Displayer</h1>
+    <form method="GET">
+        <div>
+            <label for="city"></label>
+            <input type="text" id="city" value="{{ request.GET.city }}" placeholder="Search here" name="city"/>
+        </div>
+        <input type="submit" value="Submit"/>
+    </form>
+    {% comment %} <h3>{{ lst }}</h3> {% endcomment %}
+    {% if result %}
+        <h3>{{ result.city}} is a {{result.short_description }}</h3>
+    {% endif %}
+    {% comment %} {% for item in l %}
+        <h3>
+            {{item}}
+        </h3>
+    {% endfor %} {% endcomment %}
+    <h3>
+        {{l|linebreaks}}
+    </h3>
+    {% comment %} <li>{{ lst }}</li> {% endcomment %} {% comment %} works same as for {% endcomment %}
+    {% for item in lst %}
+        <li>{{item}}</li>
+    {% endfor %}
+</div>
+</body>
+</html>
