@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'cb_dj_weather_app.urls'
+ROOT_URLCONF = 'search_info_displayer.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'cb_dj_weather_app.wsgi.application'
+WSGI_APPLICATION = 'search_info_displayer.wsgi.application'
 
 
 # Database

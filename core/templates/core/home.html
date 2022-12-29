@@ -49,14 +49,14 @@
     <h1>Search Info Displayer</h1>
     <form method="GET">
         <div>
-            <label for="city"></label>
-            <input type="text" id="city" value="{{ request.GET.city }}" placeholder="Search here" name="city"/>
+            <label for="name"></label>
+            <input type="text" id="name" value="{{ request.GET.name}}" placeholder="Search here" name="name"/>
         </div>
         <input type="submit" value="Submit"/>
     </form>
     {% comment %} <h3>{{ lst }}</h3> {% endcomment %}
     {% if result %}
-        <h3>{{ result.city}} is a {{result.short_description }}</h3>
+        <h3>{{ result.name}} is a {{result.short_description }}</h3>
     {% endif %}
     {% comment %} {% for item in l %}
         <h3>
