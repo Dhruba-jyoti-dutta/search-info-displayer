@@ -24,6 +24,8 @@ def get_html_content(request):
 
 def home(request):
     result = None
+    lst=None
+    l=None
     if 'name' in request.GET:
         # fetch the weather from Google.
         html_content = get_html_content(request)
