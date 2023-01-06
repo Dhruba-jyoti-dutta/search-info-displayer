@@ -64,4 +64,4 @@ def home(request):
         # print(lst)
         # ,"lst":lst,"l":l
         # ,"lst":lst
-    return render(request, 'core/home.html', {'result': result)
+    return render(request, 'core/home.html', {'result': result})
