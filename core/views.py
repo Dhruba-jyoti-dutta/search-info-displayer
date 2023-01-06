@@ -33,25 +33,29 @@ def home(request):
         result['name'] = request.GET.get('name')
         result['short_description']=soup.find('div',class_='shortdescription nomobile noexcerpt noprint searchaux').text
         details=soup.find_all('table',class_='infobox')
-        list1=[]
-        list2=[]
-        for detail in details:
-            h=detail.find_all('tr')
-            for j in h:
-                heading=j.find_all('th')
-                description=j.find_all('td')
-                if heading is not None:
-                    for x in heading:
-                        list1.append(x.text)
-                if description is not None:
-                    for y in description:
-                        list2.append(y.text)
-                    # result['b']=f"{x.text} :: {y.text} \n"
-            l=tuple(zip(list1,list2))
-        a=[]
-        for i in range(len(l)):
-            a.append("::".join(l[i]))
-        a="\n".join(a)
+        if details is not None:
+            list1=[]
+            list2=[]
+            for detail in details:
+                h=detail.find_all('tr')
+                for j in h:
+                    heading=j.find_all('th')
+                    description=j.find_all('td')
+                    if heading is not None:
+                        for x in heading:
+                            list1.append(x.text)
+                    if description is not None:
+                        for y in description:
+                            list2.append(y.text)
+                        # result['b']=f"{x.text} :: {y.text} \n"
+                l=tuple(zip(list1,list2))
+                a=[]
+                for i in range(len(l)):
+                    a.append("::".join(l[i]))
+                a="\n".join(a)
+        else:
+            l="no information available"
+    
 
         lst=[]
         for k in range(1,16):
