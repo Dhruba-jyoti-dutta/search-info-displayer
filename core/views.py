@@ -26,6 +26,7 @@ def home(request):
     result = None
     lst=None
     l=None
+    a=None
     if 'name' in request.GET:
         # fetch the weather from Google.
         html_content = get_html_content(request)
@@ -57,10 +58,16 @@ def home(request):
                 a="\n".join(a)
         else:
             l="no information available"
-    
+        try:    
+            lst=[]
+            for k in range(1,16):
+                c=soup.find_all('p')[k].text
+                lst.append(c)
+        except IndexError as e:
+            print("search result not available")
 
-        lst=[]
-        for k in range(1,16):
-            c=soup.find_all('p')[k].text
-            lst.append(c)
+        # lst=[]
+        # for k in range(1,16):
+        #     c=soup.find_all('p')[k].text
+        #     lst.append(c)
     return render(request, 'core/home.html', {'result': result,"lst":lst,"l":a})
