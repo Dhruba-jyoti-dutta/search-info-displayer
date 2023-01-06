@@ -63,7 +63,4 @@ def home(request):
         for k in range(1,16):
             c=soup.find_all('p')[k].text
             lst.append(c)
-        # print(lst)
-        # ,"lst":lst,"l":l
-        # ,"lst":lst
-    return render(request, 'core/home.html', {'result': result,"lst":lst,"l":l})
+    return render(request, 'core/home.html', {'result': result,"lst":lst,"l":a})
