@@ -34,37 +34,45 @@ def home(request):
         soup = BeautifulSoup(html_content, 'html.parser')
         result = dict()
         result['name'] = request.GET.get('name')
-        result['short_description']=soup.find('div',class_='shortdescription nomobile noexcerpt noprint searchaux').text
-        details=soup.find_all('table',class_='infobox')
-        if details is not None:
-            list1=[]
-            list2=[]
-            for detail in details:
-                h=detail.find_all('tr')
-                for j in h:
-                    heading=j.find_all('th')
-                    description=j.find_all('td')
-                    if heading is not None:
-                        for x in heading:
-                            list1.append(x.text)
-                    if description is not None:
-                        for y in description:
-                            list2.append(y.text)
-                        # result['b']=f"{x.text} :: {y.text} \n"
-                l=tuple(zip(list1,list2))
-                a=[]
-                for i in range(len(l)):
-                    a.append("::".join(l[i]))
-                a="\n".join(a)
-        else:
-            l="no information available"
+        # result['short_description']=soup.find('div',class_='shortdescription nomobile noexcerpt noprint searchaux').text
+        try:
+            result['short_description']=soup.find('div',class_='shortdescription nomobile noexcerpt noprint searchaux').text
+        except Exception as e:
+            # print("short description not available")
+            result['short_description']="not available please search another word (meaning not in our database)"
+        try:
+            details=soup.find_all('table',class_='infobox')
+            if details is not None:
+                list1=[]
+                list2=[]
+                for detail in details:
+                    h=detail.find_all('tr')
+                    for j in h:
+                        heading=j.find_all('th')
+                        description=j.find_all('td')
+                        if heading is not None:
+                            for x in heading:
+                                list1.append(x.text)
+                        if description is not None:
+                            for y in description:
+                                list2.append(y.text)
+                            # result['b']=f"{x.text} :: {y.text} \n"
+                    l=tuple(zip(list1,list2))
+                    a=[]
+                    for i in range(len(l)):
+                        a.append("::".join(l[i]))
+                    a="\n".join(a)
+            else:
+                l="no information available"
+        except Exception as e:
+            a="not available"
         try:    
             lst=[]
             for k in range(1,16):
                 c=soup.find_all('p')[k].text
                 lst.append(c)
         except IndexError as e:
-            print("search result not available")
+            lst=""
 
         # lst=[]
         # for k in range(1,16):
